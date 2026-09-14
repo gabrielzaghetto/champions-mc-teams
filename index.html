@@ -136,9 +136,9 @@
     object-fit: contain; background: var(--surface); border: 1px solid var(--border);
     padding: 1px;
   }
-  .mon.mega .item-icon-mini {
-    background: color-mix(in srgb, var(--mega) 30%, var(--surface));
-    border-color: color-mix(in srgb, var(--mega) 60%, var(--border));
+  .item-icon-mini.mega-icon {
+    background: conic-gradient(from 200deg, #ff6fae, #8f6fff, #4fb8ff, #57e0a8, #ffd35c, #ff6fae);
+    border-color: rgba(0,0,0,0.35);
   }
   .mon .mon-name {
     font-size: .58rem; font-weight: 500; color: var(--muted); line-height: 1.15;
@@ -2976,7 +2976,8 @@
   document.querySelectorAll('.mon').forEach(el => {
     const name = el.dataset.mon;
     const item = el.dataset.item;
-    if (/mega/i.test(name)) {
+    const isMegaMon = /mega/i.test(name);
+    if (isMegaMon) {
       el.classList.add('mega');
       const tag = document.createElement('span');
       tag.className = 'mega-tag';
@@ -3008,7 +3009,12 @@
     };
     wrap.appendChild(img);
 
-    if (item) {
+    if (isMegaMon) {
+      const badge = document.createElement('div');
+      badge.className = 'item-icon-mini mega-icon';
+      badge.title = item || 'Mega Evolution';
+      wrap.appendChild(badge);
+    } else if (item) {
       const itemUrls = itemImgUrls(item);
       if (itemUrls.length) {
         const itemImg = document.createElement('img');
