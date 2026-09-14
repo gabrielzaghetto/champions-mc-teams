@@ -4,85 +4,180 @@
 <meta charset="utf-8">
 <title>Times de Champions M-C</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0b0d12;
-    --panel: #12151d;
-    --panel2: #171b25;
-    --border: #262b38;
-    --text: #e8eaf0;
-    --muted: #8a90a3;
-    --accent: #d4af37;
-    --accent2: #4fd1a5;
-    --link: #7aa2ff;
+    --bg: #f2ede2;
+    --surface: #fffdf8;
+    --surface-2: #e9e0cd;
+    --border: #d8cbab;
+    --ink: #221c12;
+    --muted: #7a6d55;
+    --accent: #a8461f;
+    --accent-2: #2f6358;
+    --mega: #93650f;
+    --link: #2f6358;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16130e;
+      --surface: #201a12;
+      --surface-2: #2a2216;
+      --border: #3c3122;
+      --ink: #f1e8d6;
+      --muted: #a89572;
+      --accent: #e2814f;
+      --accent-2: #7fb8ab;
+      --mega: #d8ab55;
+      --link: #8fcabd;
+    }
   }
   * { box-sizing: border-box; }
-  html { color-scheme: dark; }
+  html { color-scheme: light dark; }
   body {
     margin: 0;
-    background: radial-gradient(1200px 600px at 10% -10%, #1a2030 0%, var(--bg) 55%);
-    color: var(--text);
-    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    padding: 32px 24px 64px;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Public Sans", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    padding: 40px 24px 64px;
+    -webkit-font-smoothing: antialiased;
   }
-  th, td { color: var(--text); }
-  header { max-width: 1400px; margin: 0 auto 24px; }
-  h1 { font-size: 1.6rem; margin: 0 0 4px; letter-spacing: .3px; }
-  h1 .accent { color: var(--accent); }
-  .subtitle { color: var(--muted); font-size: .92rem; margin: 0 0 20px; }
-  .stats-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 20px; }
-  .stat-card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 12px 18px; min-width: 120px; }
-  .stat-card .num { font-size: 1.4rem; font-weight: 700; color: var(--accent2); }
-  .stat-card .label { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
-  .usage-panel { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; max-width: 1400px; margin: 0 auto 24px; }
-  .usage-panel h2 { font-size: .85rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 12px; }
-  .usage-item { display: grid; grid-template-columns: 160px 1fr 36px; align-items: center; gap: 10px; font-size: .85rem; padding: 4px 0; }
-  .usage-name { color: var(--text); }
-  .usage-bar-wrap { background: var(--panel2); border-radius: 6px; height: 8px; overflow: hidden; }
-  .usage-bar { display: block; height: 100%; background: linear-gradient(90deg, var(--accent2), var(--accent)); }
-  .usage-count { color: var(--muted); text-align: right; }
-  .controls { max-width: 1400px; margin: 0 auto 12px; display: flex; gap: 10px; align-items: center; }
-  #search { flex: 1; max-width: 360px; background: var(--panel); border: 1px solid var(--border); color: var(--text); padding: 9px 12px; border-radius: 8px; font-size: .9rem; }
-  #search:focus { outline: 1px solid var(--accent2); }
-  .count-label { color: var(--muted); font-size: .85rem; }
-  .table-wrap { max-width: 1400px; margin: 0 auto; overflow-x: auto; border: 1px solid var(--border); border-radius: 10px; background: var(--panel); }
-  table { border-collapse: collapse; width: 100%; font-size: .82rem; min-width: 1500px; }
-  thead th { position: sticky; top: 0; background: var(--panel2); text-align: left; padding: 10px 12px; font-size: .72rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); border-bottom: 1px solid var(--border); cursor: pointer; white-space: nowrap; }
-  thead th:hover { color: var(--accent2); }
-  tbody td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
-  tbody tr:hover { background: rgba(255,255,255,0.03); }
-  .mono { font-family: ui-monospace, Consolas, monospace; color: var(--accent2); }
+  th, td { color: var(--ink); }
+  header { max-width: 1400px; margin: 0 auto 28px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--accent-2);
+    margin: 0 0 10px;
+  }
+  h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    font-size: 2.15rem;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  h1 .accent { color: var(--accent); font-style: italic; font-weight: 500; }
+  .subtitle { color: var(--muted); font-size: .95rem; margin: 0; max-width: 62ch; line-height: 1.5; }
+  .stats-row { display: flex; flex-wrap: wrap; margin-top: 22px; border-top: 1px solid var(--border); }
+  .stat-card { flex: 1 1 160px; padding: 14px 22px 0 0; border-right: 1px solid var(--border); }
+  .stat-card:last-child { border-right: none; }
+  .stat-card .num {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--accent);
+    display: block;
+  }
+  .stat-card .label { font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+  .usage-panel { max-width: 1400px; margin: 28px auto; }
+  .usage-panel h2 {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-weight: 500;
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--muted);
+    margin: 0 0 14px;
+  }
+  .usage-item { display: grid; grid-template-columns: 150px 1fr 40px; align-items: center; gap: 12px; font-size: .86rem; padding: 5px 0; }
+  .usage-name { color: var(--ink); }
+  .usage-bar-wrap { background: var(--surface-2); height: 7px; overflow: hidden; }
+  .usage-bar { display: block; height: 100%; background: var(--accent); }
+  .usage-count { color: var(--muted); text-align: right; font-family: "IBM Plex Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+  .controls { max-width: 1400px; margin: 0 auto 14px; display: flex; gap: 10px; align-items: center; }
+  #search {
+    flex: 1; max-width: 400px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--ink);
+    padding: 10px 14px;
+    font-size: .92rem;
+    font-family: inherit;
+  }
+  #search:focus { outline: none; border-color: var(--accent-2); }
+  .count-label { color: var(--muted); font-size: .82rem; font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  .table-wrap { max-width: 1400px; margin: 0 auto; overflow-x: auto; border: 1px solid var(--border); background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: .84rem; min-width: 1500px; }
+  thead th {
+    position: sticky; top: 0;
+    background: var(--surface-2);
+    text-align: left;
+    padding: 11px 14px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .68rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  thead th:hover { color: var(--accent-2); }
+  tbody td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tbody tr:hover { background: var(--surface-2); }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; color: var(--accent-2); font-variant-numeric: tabular-nums; }
   .center { text-align: center; }
-  .nowrap { white-space: nowrap; }
+  .nowrap { white-space: nowrap; font-variant-numeric: tabular-nums; }
   .mons { min-width: 456px; display: flex; flex-wrap: nowrap; gap: 6px; }
-  .mon { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; width: 70px; flex: 0 0 70px; background: linear-gradient(180deg, #1c2130 0%, #151925 100%); border: 1px solid var(--border); border-radius: 10px; padding: 5px 2px 4px; box-shadow: 0 1px 0 rgba(255,255,255,0.03) inset, 0 2px 4px rgba(0,0,0,0.25); transition: transform .12s ease, border-color .12s ease; }
-  .mon:hover { transform: translateY(-2px); border-color: var(--accent2); }
-  .mon.mega { border-color: rgba(212,175,55,0.55); background: linear-gradient(180deg, #2a2415 0%, #1a1710 100%); }
-  .mon.mega:hover { border-color: var(--accent); }
+  .mon {
+    position: relative;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+    width: 70px; flex: 0 0 70px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    padding: 5px 2px 4px;
+    transition: transform .12s ease, border-color .12s ease;
+  }
+  .mon:hover { transform: translateY(-2px); border-color: var(--accent-2); }
+  .mon.mega { border-color: var(--mega); }
+  .mon .mega-tag {
+    position: absolute; top: -7px; left: 50%; transform: translateX(-50%);
+    background: var(--mega); color: var(--surface);
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .5rem; font-weight: 600; letter-spacing: .06em;
+    padding: 1px 4px;
+    white-space: nowrap;
+  }
   .mon-sprite-wrap { position: relative; width: 48px; height: 48px; }
-  .mon img.mon-img { width: 48px; height: 48px; object-fit: contain; display: block; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.4)); }
-  .item-icon-mini { position: absolute; right: -2px; bottom: -2px; width: 17px; height: 17px; object-fit: contain; background: #0b0d12; border: 1px solid var(--border); border-radius: 5px; padding: 1px; box-shadow: 0 1px 3px rgba(0,0,0,0.5); }
-  .mon .mon-name { font-size: .58rem; font-weight: 500; color: var(--muted); line-height: 1.15; text-align: center; margin-top: 2px; max-width: 60px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .mon.mega .mon-name { color: var(--accent); }
-  .mon .mon-fallback { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: .6rem; text-align: center; color: var(--text); background: var(--panel2); border-radius: 6px; }
-  a { color: var(--link); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  footer { max-width: 1400px; margin: 24px auto 0; color: var(--muted); font-size: .78rem; }
+  .mon img.mon-img { width: 48px; height: 48px; object-fit: contain; display: block; }
+  .item-icon-mini {
+    position: absolute; right: -2px; bottom: -2px; width: 17px; height: 17px;
+    object-fit: contain; background: var(--surface); border: 1px solid var(--border);
+    padding: 1px;
+  }
+  .mon .mon-name {
+    font-size: .58rem; font-weight: 500; color: var(--muted); line-height: 1.15;
+    text-align: center; margin-top: 2px; max-width: 60px; overflow: hidden;
+    text-overflow: ellipsis; white-space: nowrap;
+  }
+  .mon.mega .mon-name { color: var(--mega); }
+  .mon .mon-fallback {
+    width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;
+    font-size: .6rem; text-align: center; color: var(--ink); background: var(--surface-2);
+  }
+  a { color: var(--link); text-decoration: none; border-bottom: 1px solid currentColor; }
+  a:hover { opacity: .7; }
+  footer { max-width: 1400px; margin: 32px auto 0; color: var(--muted); font-size: .78rem; border-top: 1px solid var(--border); padding-top: 16px; }
 
   @media (max-width: 760px) {
-    body { padding: 20px 12px 48px; }
-    .stats-row { gap: 8px; }
-    .stat-card { padding: 10px 14px; min-width: 0; flex: 1 1 auto; }
-    .usage-item { grid-template-columns: 110px 1fr 30px; }
+    body { padding: 24px 14px 48px; }
+    h1 { font-size: 1.6rem; }
+    .stat-card { flex: 1 1 40%; border-right: none; border-bottom: 1px solid var(--border); padding: 12px 0; }
+    .usage-item { grid-template-columns: 112px 1fr 32px; }
     .controls { flex-direction: column; align-items: stretch; gap: 10px; }
     #search {
       max-width: none;
       width: 100%;
       padding: 13px 16px;
       font-size: 1rem;
-      border: 1.5px solid var(--accent2);
-      background: var(--panel2);
-      border-radius: 10px;
+      border: 1.5px solid var(--accent-2);
     }
     #search::placeholder { color: var(--muted); opacity: .9; }
     .count-label { text-align: right; font-size: .8rem; }
@@ -91,33 +186,33 @@
     thead { display: none; }
     tbody, table, tr, td { display: block; width: 100%; }
     tr {
-      background: var(--panel);
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px;
       margin-bottom: 14px;
-      padding: 12px 14px;
+      padding: 14px 16px;
     }
-    tbody tr:hover { background: var(--panel); }
+    tbody tr:hover { background: var(--surface); }
     td {
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      padding: 9px 0;
     }
     td:last-child { border-bottom: none; }
     td::before {
       content: attr(data-label);
       display: block;
-      font-size: .65rem;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: .64rem;
       text-transform: uppercase;
-      letter-spacing: .05em;
+      letter-spacing: .06em;
       color: var(--muted);
-      margin-bottom: 4px;
+      margin-bottom: 5px;
     }
     td.mono { font-size: .95rem; }
     .mons {
       min-width: 0;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
+      gap: 10px 8px;
     }
     .mons::before {
       grid-column: 1 / -1;
@@ -128,6 +223,7 @@
 </head>
 <body>
 <header>
+  <p class="eyebrow">Dossie competitivo, Regulation M-C</p>
   <h1>Times de Pokemon <span class="accent">Champions</span> na Regulation M-C</h1>
   <p class="subtitle">Times coletados e validados, todos com pokepaste real, 6 mons e EVs confirmados. Gerado em 14 Sep 2026</p>
   <div class="stats-row">
@@ -2893,7 +2989,13 @@
   document.querySelectorAll('.mon').forEach(el => {
     const name = el.dataset.mon;
     const item = el.dataset.item;
-    if (/mega/i.test(name)) el.classList.add('mega');
+    if (/mega/i.test(name)) {
+      el.classList.add('mega');
+      const tag = document.createElement('span');
+      tag.className = 'mega-tag';
+      tag.textContent = 'MEGA';
+      el.appendChild(tag);
+    }
 
     const wrap = document.createElement('div');
     wrap.className = 'mon-sprite-wrap';
