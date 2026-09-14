@@ -114,7 +114,13 @@
     transition: transform .12s ease, border-color .12s ease;
   }
   .mon:hover { transform: translateY(-2px); border-color: var(--accent-2); }
-  .mon.mega { border-color: var(--mega); }
+  .mon.mega {
+    border-color: var(--mega);
+    border-width: 2px;
+    padding: 4px 1px 3px;
+    background: color-mix(in srgb, var(--mega) 22%, var(--surface-2));
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--mega) 45%, transparent);
+  }
   .mon .mega-tag {
     position: absolute; top: -7px; left: 50%; transform: translateX(-50%);
     background: var(--mega); color: var(--surface);
