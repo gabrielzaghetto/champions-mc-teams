@@ -103,9 +103,11 @@
     td.mono { font-size: .95rem; }
     .mons {
       min-width: 0;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
     }
-    .mon { width: 62px; flex: 0 0 62px; }
+    .mon { width: 100%; flex: none; }
   }
 </style>
 </head>
