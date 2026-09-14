@@ -137,9 +137,11 @@
     padding: 1px;
   }
   .item-icon-mini.mega-icon {
-    background: conic-gradient(from 200deg, #ff6fae, #8f6fff, #4fb8ff, #57e0a8, #ffd35c, #ff6fae);
-    border-color: rgba(0,0,0,0.35);
+    background: transparent;
+    border: none;
+    padding: 0;
   }
+  .item-icon-mini.mega-icon svg { display: block; width: 100%; height: 100%; }
   .mon .mon-name {
     font-size: .58rem; font-weight: 500; color: var(--muted); line-height: 1.15;
     text-align: center; margin-top: 2px; max-width: 60px; overflow: hidden;
@@ -210,6 +212,17 @@
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="megaGrad" x1="10%" y1="0%" x2="90%" y2="100%">
+      <stop offset="0%" stop-color="#ff74d6"/>
+      <stop offset="28%" stop-color="#9a6dff"/>
+      <stop offset="55%" stop-color="#4fd3ff"/>
+      <stop offset="78%" stop-color="#6fe0a0"/>
+      <stop offset="100%" stop-color="#e6e35c"/>
+    </linearGradient>
+  </defs>
+</svg>
 <header>
   <h1>Times de Pokemon <span class="accent">Champions</span> na Regulation M-C</h1>
   <p class="subtitle">Times coletados e validados, todos com pokepaste real, 6 mons e EVs confirmados. Gerado em 14 Sep 2026</p>
@@ -3013,6 +3026,13 @@
       const badge = document.createElement('div');
       badge.className = 'item-icon-mini mega-icon';
       badge.title = item || 'Mega Evolution';
+      badge.innerHTML = `
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="11" fill="url(#megaGrad)" stroke="rgba(0,0,0,0.4)" stroke-width="0.6"/>
+          <path d="M9.2 4.2 C14 4.2 14 9 9.6 11 C5.2 13 5.2 17.6 10.6 19.8" fill="none" stroke="#215c4f" stroke-width="2.3" stroke-linecap="round"/>
+          <circle cx="16.8" cy="6.4" r="1.7" fill="#ffffff" opacity="0.9"/>
+          <circle cx="19" cy="9.2" r="0.75" fill="#ffffff" opacity="0.75"/>
+        </svg>`;
       wrap.appendChild(badge);
     } else if (item) {
       const itemUrls = itemImgUrls(item);
